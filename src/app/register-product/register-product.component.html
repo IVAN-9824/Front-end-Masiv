@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!-- Created By CodingLab - www.codinglabweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <!---<title> Responsive Registration Form | CodingLab </title>--->
+    <link rel="stylesheet" >
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="container">
+    <div class="title">Registrar producto </div>
+    <div class="content">
+      <form  [formGroup]="formParent" (ngSubmit)="leerForm()" >
+        <div class="user-details">
+          <div class="input-box" >
+            <input type="text"class="form-control"  placeholder="# Guia"  formControlName="guideNumber"  required>
+            <div class="alert-danger" *ngIf="guideNumber?.invalid && (guideNumber?.dirty || guideNumber?.touched)">
+              <div class="container-error-message" *ngIf="guideNumber?.hasError('required')">
+                Campo es requerida 
+              </div>
+              <div class="container-error-message" *ngIf="guideNumber?.hasError('minlength')">
+               Debe ser de 10 digitos numericos 
+              </div>
+              <div class="container-error-message" *ngIf="guideNumber?.hasError('pattern')">
+                Solo valores numericos 
+               </div>
+            </div>
+          </div>
+          <div class="input-box">
+            <input type="text"  formControlName="typeProduc" placeholder="Tipo de producto" required>
+            <div class="alert-danger" *ngIf="typeProduc?.invalid && (typeProduc?.dirty || typeProduc?.touched)">
+              <div class="container-error-message" *ngIf="typeProduc?.hasError('required')">
+                Campo es requerida 
+              </div>
+            </div>
+          </div>
+          <div class="input-box">
+            <input type="text" formControlName="productQuantity" placeholder="Cantidad" required>
+            <div class="alert-danger" *ngIf="productQuantity?.invalid && (productQuantity?.dirty || productQuantity?.touched)">
+              <div class="container-error-message" *ngIf="productQuantity?.hasError('required')">
+                Campo es requerida 
+              </div>
+            </div>
+          </div>
+          <div class="input-box">
+            <input type="date" formControlName="registrationDate" placeholder="Fecha Registro " required>
+            <div class="alert-danger" *ngIf="registrationDate?.invalid && (registrationDate?.dirty || registrationDate?.touched)">
+              <div class="container-error-message" *ngIf="registrationDate?.hasError('required')">
+                Campo es requerida 
+              </div>
+            </div>
+          </div>
+          <div class="input-box">
+            <input type="date" formControlName="deadLine" placeholder="Fecha Entrega" required>
+            <div class="alert-danger" *ngIf="deadLine?.invalid && (deadLine?.dirty || deadLine?.touched)">
+              <div class="container-error-message" *ngIf="deadLine?.hasError('required')">
+                Campo es requerida 
+              </div>
+            </div>
+          </div>
+          <div class="input-box">
+            <input type="text" formControlName="shippingPrice"placeholder="Total de envio" required>
+            <div class="alert-danger" *ngIf="shippingPrice?.invalid && (shippingPrice?.dirty || shippingPrice?.touched)">
+              <div class="container-error-message" *ngIf="shippingPrice?.hasError('required')">
+                Campo es requerida 
+              </div>
+            </div>
+          </div>
+          <div class="input-box">
+          <select formControlName="typeTranpor" placeholder="Tipo de Transporte" (valueChange)="validatorIdVheiculo()" class="select-css"  >
+            <!-- Opciones de la lista -->
+            <option value="" disabled selected>Tipo de Transporte</option>
+            <option value="Maritimo" >Maritimo</option> <!-- Opción por defecto -->
+            <option value="Terrestre">Terrestre</option>
+          </select>
+          <div class="alert-danger" *ngIf="typeTranpor?.invalid && (typeTranpor?.dirty || typeTranpor?.touched)">
+          <div class="container-error-message" *ngIf="typeTranpor?.hasError('required')">
+            Campo es requerida 
+          </div>
+          </div>
+        </div>
+          <div class="input-box" >
+            <input   name="IdV" type="text" formControlName="idVehicle" placeholder="Identificador del vehiculo" required>
+            <div class="alert-danger" *ngIf="idVehicle?.invalid && (idVehicle?.dirty || idVehicle?.touched)">
+              <div class="container-error-message" *ngIf="idVehicle?.hasError('required')">
+                Campo es requerida 
+              </div>
+              <div class="container-error-message" *ngIf="guideNumber?.hasError('pattern')">
+                No cumple con el formato  
+               </div>
+            </div>
+          </div>
+          <div class="input-box">
+            <input type="text" formControlName="idClient" placeholder="Identificador del Cliente" required>
+            <div class="alert-danger" *ngIf="idClient?.invalid && (idClient?.dirty || idClient?.touched)">
+              <div class="container-error-message" *ngIf="idClient?.hasError('required')">
+                Campo es requerida 
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="input-box" > 
+            <select  formControlName="deliveryWarehouse"   class="select-css">
+              <option value="" disabled selected>Bodega</option>
+                <option [value]="item.iden" *ngFor="let item of storages ">{{item.iden}}</option>
+                </select>
+          </div>
+        
+        <div >
+          <button   class="button" type="submit" >Crear Producto</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<html>
+<body>
+<div class="container-fluid">
+	<table class="table" name="tabla">
+		<thead>
+			<tr>
+				<th># Guia</th>
+				<th>Tipo de producto</th>
+				<th>Cantidad</th>
+				<th>Dia de Registro</th>
+				<th>Dia de entrega</th>
+                <th>Valor Total</th>
+                <th>Descuento</th>
+                <th>Id vehiculo </th>
+                <th>Tipo de Transporte </th>
+                <th>Id Cliente </th>
+                <th>Bodega </th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let item of products">
+				<td>
+                    <li>
+                    {{item.guideNumber}}
+                </li>
+            </td>
+				<td>
+                    <li>
+                    {{item.typeProduc}}
+                </li>
+            </td>
+				<td>    <li>
+                    {{item.productQuantity}}
+                </li></td>
+                <td>    <li >
+                    {{item.registrationDate}}
+                </li></td>
+                <td>    <li >
+                    {{item.deadLine}}
+                </li></td>
+                <td>    <li >
+                    {{item.shippingPrice}}
+                </li></td>
+                <td>    <li >
+                    {{item.discount}}
+                </li></td>
+                <td>    <li >
+                    {{item.idVehicle}}
+                </li></td>
+                <td>    <li >
+                    {{item.typeTranpor}}
+                </li></td>
+                <td>    <li >
+                    {{item.idClient}}
+                </li></td>
+                <td>    <li >
+                    {{item.deliveryWarehouse}}
+                </li></td>
+            </tr>
+		</tbody>
+	</table>
+</div>
+<script>
+    $(document).ready(function(){
+        $('#tabla').DataTable();
+    });
+</script>
+</body>
+</html>

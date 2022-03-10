@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!-- Coding by CodingLab | www.codinglabweb.com-->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<title> Registration or Sign Up form in HTML CSS | CodingLab </title>-->
+    <link rel="stylesheet" >
+   </head>
+<body>
+  <div class="wrapper">
+    <h2>Registro de usuario</h2>
+    <form  [formGroup]="formParent" (ngSubmit)="createUser()">
+      <div class="input-box">
+        <input type="text" formControlName="name" placeholder="Nombre" required>
+        <div class="alert-danger" *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+          <div class="container-error-message" *ngIf="name?.hasError('required')">
+            Campo es requerida 
+          </div>
+      </div>
+      </div>
+      
+      <div>
+        <select name="typedocumen" formControlName="typeId" class="select-css" >
+            <!-- Opciones de la lista -->
+            <option value="" selected>Tipo de identificacion</option>
+            <option value="CC" selected>CC</option>
+            <option value="CE" >CE</option> <!-- Opción por defecto -->
+            <option value="PS">PS</option>
+            <option value="NIT">NIT</option>
+          </select>
+      </div>
+      <div class="input-box">
+        <input type="text" placeholder="Documento"  formControlName="doc" required>
+        <div class="alert-danger" *ngIf="doc?.invalid && (doc?.dirty || doc?.touched)">
+          <div class="container-error-message" *ngIf="doc?.hasError('required')">
+            Campo es requerida 
+          </div>
+      </div>
+      </div>
+      <div >
+        <button  class="button" type="submit" >Crear Usuario</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
+
+  
+
