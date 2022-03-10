@@ -68,7 +68,7 @@
             </div>
           </div>
           <div class="input-box">
-          <select formControlName="typeTranpor" placeholder="Tipo de Transporte" (valueChange)="validatorIdVheiculo()" class="select-css"  >
+          <select formControlName="typeTranpor" placeholder="Tipo de Transporte"  class="select-css"  >
             <!-- Opciones de la lista -->
             <option value="" disabled selected>Tipo de Transporte</option>
             <option value="Maritimo" >Maritimo</option> <!-- Opción por defecto -->
@@ -81,15 +81,15 @@
           </div>
         </div>
           <div class="input-box" >
-            <input   name="IdV" type="text" formControlName="idVehicle" placeholder="Identificador del vehiculo" required>
-            <div class="alert-danger" *ngIf="idVehicle?.invalid && (idVehicle?.dirty || idVehicle?.touched)">
-              <div class="container-error-message" *ngIf="idVehicle?.hasError('required')">
+            <input   name="IdV" type="text" formControlName="idVehicle" (change)="validatorIdVheiculo()"   placeholder="Identificador del vehiculo" required>
+            <div class="alert-danger" *ngIf="!ok  && (idVehicle?.dirty || idVehicle?.touched)"   >
+              <div class="container-error-message"  *ngIf="idVehicle?.hasError('required')">
                 Campo es requerida 
               </div>
-              <div class="container-error-message" *ngIf="guideNumber?.hasError('pattern')">
+              <div class="container-error-message" *ngIf="!ok">
                 No cumple con el formato  
                </div>
-            </div>
+              </div>
           </div>
           <div class="input-box">
             <input type="text" formControlName="idClient" placeholder="Identificador del Cliente" required>

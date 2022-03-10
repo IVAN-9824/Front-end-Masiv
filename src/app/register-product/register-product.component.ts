@@ -22,6 +22,7 @@ export class RegisterProductComponent implements OnInit {
   storages: storage[]=[];
   public formParent: FormGroup = new FormGroup({});
   pattern: any ;
+  ok: boolean =false;
   
   constructor(private appService: AppService, private formBuilder:FormBuilder) {
   
@@ -38,7 +39,6 @@ export class RegisterProductComponent implements OnInit {
   leerForm () : void{
     if (this.formParent.valid){
     this.appService.crearProduct(this.formParent.value).subscribe(()=>this.onResetForm());
-    
     }
   }
 
@@ -57,18 +57,30 @@ export class RegisterProductComponent implements OnInit {
     deliveryWarehouse:  new FormControl(null, Validators.compose([Validators.required])),
   })
   }
+
   onResetForm(){
     this.formParent.reset()
   }
-  public validatorIdVheiculo(){
-    if (this.formParent.get('typeTranpor')?.value.toUpperCase()=='Maritimo'){
-      this.pattern= /^\D{3}\d{3}\D$/;
-      console.log("OK");
-      
-    }else {
-      this.pattern= /\D{3}\d{3}/;
-      console.log("OK2");
+  public validatorIdVheiculo(): boolean {
+    if (this.formParent.get('typeTranpor')?.value== 'Maritimo'){
+      const pattern2= (/[a-zA-Z]{3}[0-9]{3}\D$/);
+      console.log(pattern2.test(this.formParent.get('idVehicle')?.value));
+      if(pattern2.test(this.formParent.get('idVehicle')?.value)){
+        console.log("OK- maritimo1");
+        this.ok=true;
+      return true;
+      }
+      console.log("OK- maritimo2");
+    }else{
+      const pattern2= (/^[a-zA-Z]{3}[0-9]{3}$/);
+      console.log(pattern2.test(this.formParent.get('idVehicle')?.value));
+      if(pattern2.test(this.formParent.get('idVehicle')?.value)){
+        console.log("OK- mariti");
+        this.ok=true;
+        return true; 
     }
+    }
+    return false;
   }
   
 
